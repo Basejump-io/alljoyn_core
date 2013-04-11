@@ -424,7 +424,7 @@ class _LocalEndpoint : public _BusEndpoint, public qcc::AlarmListener, public Me
     /**
      * Registered LocalObjects
      */
-    std::unordered_map<const char*, BusObject*, Hash, PathEq> localObjects;
+    std::tr1::unordered_map<const char*, BusObject*, Hash, PathEq> localObjects;
 
     /**
      * List of contexts for method call replies.

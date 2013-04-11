@@ -404,18 +404,18 @@ class _PolicyDB {
      */
     struct PolicyRuleListSet {
         PolicyRuleList defaultRules;        /**< default rules */
-        std::unordered_map<uint32_t, PolicyRuleList> groupRules; /**< group rules on a per group id basis */
-        std::unordered_map<uint32_t, PolicyRuleList> userRules;  /**< user rules on a per user id basis */
+        std::std::tr1::unordered_map<uint32_t, PolicyRuleList> groupRules; /**< group rules on a per group id basis */
+        std::std::tr1::unordered_map<uint32_t, PolicyRuleList> userRules;  /**< user rules on a per user id basis */
         PolicyRuleList atConsoleRules;      /**< at console rules */
         PolicyRuleList notAtConsoleRules;   /**< not at console rules */
         PolicyRuleList mandatoryRules;      /**< mandatory rules */
     };
 
     /** typedef for mapping a string to a numerical value for normalization */
-    typedef std::unordered_map<qcc::StringMapKey, uint32_t> StringIDMap;
+    typedef std::std::tr1::unordered_map<qcc::StringMapKey, uint32_t> StringIDMap;
 
     /** typedef for mapping a unique bus name to a set of normalized well known bus names */
-    typedef std::unordered_map<qcc::StringMapKey, BusNameIDSet> UniqueNameIDMap;
+    typedef std::std::tr1::unordered_map<qcc::StringMapKey, BusNameIDSet> UniqueNameIDMap;
 
     /**
      * Adds rules to specific rule sets.  Called by public AddRule to add
@@ -527,7 +527,7 @@ class _PolicyDB {
 
 /**
  * This class converts and stores a message's header information in a form
- * that allows for very fast lookup in unordered_map<>'s.
+ * that allows for very fast lookup in std::tr1::unordered_map<>'s.
  */
 class NormalizedMsgHdr {
   public:

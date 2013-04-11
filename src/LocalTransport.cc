@@ -188,7 +188,7 @@ _LocalEndpoint::~_LocalEndpoint()
         /*
          * Unregister all application registered bus objects
          */
-        unordered_map<const char*, BusObject*, Hash, PathEq>::iterator it = localObjects.begin();
+        std::tr1::unordered_map<const char*, BusObject*, Hash, PathEq>::iterator it = localObjects.begin();
         while (it != localObjects.end()) {
             BusObject* obj = it->second;
             UnregisterBusObject(*obj);
@@ -606,7 +606,7 @@ void _LocalEndpoint::UnregisterBusObject(BusObject& object)
 
 BusObject* _LocalEndpoint::FindLocalObject(const char* objectPath) {
     objectsLock.Lock(MUTEX_CONTEXT);
-    unordered_map<const char*, BusObject*, Hash, PathEq>::iterator iter = localObjects.find(objectPath);
+    std::tr1::unordered_map<const char*, BusObject*, Hash, PathEq>::iterator iter = localObjects.find(objectPath);
     BusObject* ret = (iter == localObjects.end()) ? NULL : iter->second;
     objectsLock.Unlock(MUTEX_CONTEXT);
     return ret;
@@ -1028,7 +1028,7 @@ void _LocalEndpoint::DeferredCallbacks::AlarmTriggered(const qcc::Alarm& alarm, 
          * Call ObjectRegistered for any unregistered bus objects
          */
         endpoint->objectsLock.Lock(MUTEX_CONTEXT);
-        unordered_map<const char*, BusObject*, Hash, PathEq>::iterator iter = endpoint->localObjects.begin();
+        std::tr1::unordered_map<const char*, BusObject*, Hash, PathEq>::iterator iter = endpoint->localObjects.begin();
         while (endpoint->running && (iter != endpoint->localObjects.end())) {
             if (!iter->second->isRegistered) {
                 BusObject* bo = iter->second;
